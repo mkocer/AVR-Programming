@@ -4,8 +4,8 @@
 ##########    Check these every time you start a new project    ##########
 ##########------------------------------------------------------##########
 
-MCU   = atmega168
-F_CPU = 1000000
+MCU   = atmega328p
+F_CPU = 8000000
 BAUD = 9600
 ## Also try BAUD = 19200 or 38400 if you're feeling lucky.
 
@@ -17,8 +17,10 @@ MAIN = blinkLED.c
 LOCAL_SOURCE = 
 
 ## Here you can link to one more directory (and multiple .c files)
-EXTRA_SOURCE_DIR = ../../AVR-Programming-Library/
-EXTRA_SOURCE_FILES = USART.c
+#EXTRA_SOURCE_DIR = ../../AVR-Programming-Library/
+EXTRA_SOURCE_DIR = 
+#EXTRA_SOURCE_FILES = USART.c
+EXTRA_SOURCE_FILES = 
 
 ##########------------------------------------------------------##########
 ##########                 Programmer Defaults                  ##########
@@ -26,7 +28,7 @@ EXTRA_SOURCE_FILES = USART.c
 ##########        (Can override.  See bottom of file.)          ##########
 ##########------------------------------------------------------##########
 
-PROGRAMMER_TYPE = usbtiny
+PROGRAMMER_TYPE = usbasp
 # extra arguments to avrdude: baud rate, chip type, -F flag, etc.
 PROGRAMMER_ARGS = 	
 

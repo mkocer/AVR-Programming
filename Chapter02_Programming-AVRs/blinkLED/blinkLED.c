@@ -1,26 +1,32 @@
-                                                       /* Blinker Demo */
+                                                    /* Blinker Demo II */
 
-// ------- Preamble -------- //
-#include <avr/io.h>                        /* Defines pins, ports, etc */
-#include <util/delay.h>                     /* Functions to waste time */
+#include <avr/io.h>
+#include <util/delay.h>
 
+#define LED      PB0
+#define LED_DDR  DDRB
+#define LED_PORT PORTB
+
+#define DELAYTIME 200
+
+#define setBit(sfr, bit)     (_SFR_BYTE(sfr) |= (1 << bit))
+#define clearBit(sfr, bit)   (_SFR_BYTE(sfr) &= ~(1 << bit))
+#define toggleBit(sfr, bit)  (_SFR_BYTE(sfr) ^= (1 << bit))
 
 int main(void) {
 
-  // -------- Inits --------- //
-  DDRB |= (1 << PB0);           /* Data Direction Register B:
-                                   writing a one to the bit
-                                   enables output. */
+  // Init
+  setBit(LED_DDR, LED);                      /* set LED pin for output */
 
-  // ------ Event loop ------ //
+  // Mainloop
   while (1) {
 
-    PORTB = 0b00000001;          /* Turn on first LED bit/pin in PORTB */
-    _delay_ms(1000);                                           /* wait */
+    setBit(LED_PORT, LED);
+    _delay_ms(5 * DELAYTIME);
 
-    PORTB = 0b00000000;          /* Turn off all B pins, including LED */
-    _delay_ms(1000);                                           /* wait */
+    clearBit(LED_PORT, LED);
+    _delay_ms(5* DELAYTIME);
 
-  }                                                  /* End event loop */
-  return (0);                            /* This line is never reached */
+  }
+  return (0);                                          /* end mainloop */
 }
